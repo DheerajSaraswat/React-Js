@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   // newElement
 
   // <React.StrictMode>
-  //     App ()                     // It will also work but it will create issues with optimissation
+  //     App ()                     // It will also work but it will create issues in optimisation
   // </React.StrictMode>
   
   <React.StrictMode>
