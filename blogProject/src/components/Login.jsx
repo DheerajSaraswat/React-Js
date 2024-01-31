@@ -21,7 +21,7 @@ function Login() {
                 if(userData){
                     dispatch(authLogin(userData))
                 }
-                navigate('/')
+                navigate('/')   //TODO: move it down  
             }
         } catch (error) {
             setError(error.message)

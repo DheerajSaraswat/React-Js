@@ -4,12 +4,14 @@ import { Client, Account, ID } from "appwrite";
 export class AuthService {
   client = new Client();
   account;
+
   constructor() {
     this.client
       .setEndpoint(config.appwriteURL)
       .setProject(config.appwriteProjectId);
     this.account = new Account(this.client);
   }
+
   async createAccount({ email, password, name }) {
     try {
       const userAccount = await this.account.create(
@@ -19,6 +21,7 @@ export class AuthService {
         name
       );
       if (userAccount) {
+        // call another method
         return this.login({ email, password });
       } else {
         return userAccount;
@@ -27,6 +30,7 @@ export class AuthService {
       throw error;
     }
   }
+
   async login({ email, password }) {
     try {
       return await this.account.createEmailSession(email, password);
@@ -34,6 +38,7 @@ export class AuthService {
       throw error;
     }
   }
+
   async getCurrentUser() {
     try {
       return await this.account.get();
@@ -43,11 +48,12 @@ export class AuthService {
 
     return null;
   }
+
   async logout() {
     try {
       await this.account.deleteSessions();
     } catch (error) {
-      console.log("Appwrite Sevice :: logout :: ", error);
+      console.log("Appwrite serive :: logout :: error", error);
     }
   }
 }
